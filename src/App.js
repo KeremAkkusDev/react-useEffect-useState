@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header';
+import Loggedin from './components/LoggedIn';
+import {useState} from "react"
+import UseStateE from './components/UseStateE';
+import InputExample from './components/InputExample';
+import UseEffectE from './components/UseEffectE';
+import Counter from './components/Counter';
 
+const name = "Kerem"
+const surname = "Akkuş"
 function App() {
+  const [isLoggedIn,setLoggedIn] = useState();
+  const [isVisible,setIsVisible] = useState(true);
   return (
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <Loggedin 
+        name={name} 
+        surname={surname} 
+        isLoggedIn={isLoggedIn} 
+        setLoggedIn={setLoggedIn} 
+        friends={["Ahmet","Tayfun","Gökhan","Ayşe"]}
+        address={{
+          title: 'Ataşehir/İstanbul',
+          zip: 154325,      
+        }}
+      
+      />
+      <UseStateE/>
+      <InputExample/>
+      <UseEffectE/>
+      {isVisible && <Counter/>}
+      <button onClick={()=> setIsVisible(!isVisible)}>Toggle</button>    
     </div>
   );
 }
